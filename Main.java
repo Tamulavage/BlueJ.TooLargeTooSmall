@@ -1,22 +1,57 @@
-
+import java.util.Scanner;
 /**
- * Write a description of class Main here.
+ * 20 guesses to guess the random generated number
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Tamulavage)
+ * @version (2/5)
  */
 public class Main
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private int randNum;
+    private int userVal;
+    private int attempts;
+    boolean gameWinner;
 
     /**
      * Constructor for objects of class Main
      */
     public Main()
     {
+        System.out.println("Pick a number between 1 and 100, you have 20 guesses");
         // initialise instance variables
-        x = 0;
+        
+        
+        randNum = getRandomNum();
+    //  System.out.println(randNum);
+        attempts = 0;
+        
+        while(gameWinner != true && attempts < 20)
+        {
+        userVal = getUserInput();   
+        attempts++;
+        
+        if(userVal == randNum){
+        gameWinner = true;
+          System.out.println("You won!!");
+          System.out.println("It took you " + attempts + " to guess correctly" );
+    }
+     if(userVal > randNum)
+        {
+             System.out.println("To High");
+        }
+       if(userVal < randNum)
+        {
+             System.out.println("To low");
+        }
+    } // end While
+    
+     if(gameWinner != true)
+     {System.out.println("Sorry, You lost");
+        }
+        
+        
+        
     }
 
     /**
@@ -25,9 +60,24 @@ public class Main
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public int getRandomNum()
     {
         // put your code here
-        return x + y;
+        int ran = 0;
+        
+        ran = 1+ (int)(Math.random() * 100);
+        
+        return ran ;
+    }
+    
+     public int getUserInput()
+    {
+        Scanner reader = new Scanner(System.in);
+        System.out.println("What is your guess? ");
+        int guess = reader.nextInt();
+        // close reader
+        reader.close();
+        
+        return guess;
     }
 }
