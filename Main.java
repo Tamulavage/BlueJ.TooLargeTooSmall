@@ -11,6 +11,7 @@ public class Main
     private int randNum;
     private int userVal;
     private int attempts;
+    private int lastuserVal;
     boolean gameWinner;
 
     /**
@@ -20,7 +21,7 @@ public class Main
     {
         System.out.println("Pick a number between 1 and 100, you have 20 guesses");
         // initialise instance variables
-        
+        lastuserVal = 0;
         
         randNum = getRandomNum();
     //  System.out.println(randNum);
@@ -29,7 +30,9 @@ public class Main
         while(gameWinner != true && attempts < 20)
         {
         userVal = getUserInput();   
-        attempts++;
+        if(lastuserVal != userVal){
+            attempts++;
+        }
         
         if(userVal == randNum){
         gameWinner = true;
@@ -44,6 +47,7 @@ public class Main
         {
              System.out.println("To low");
         }
+        lastuserVal = userVal;
     } // end While
     
      if(gameWinner != true)
